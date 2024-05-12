@@ -12,25 +12,16 @@
 <body>
   <div class="menu-bar">
     <ul class="menu-list">
-      <li class="menu-item">
-        <a href="#serch">Home</a>
-      </li>
-      <li class="menu-item">
-        <a href="#serch">Tra Cứu Thời Tiết</a>
-      </li>
-      <li class="menu-item">
-        <a href="#serch">Dự Báo Thời Tiết</a>
-      </li>
-      <li class="menu-item">
-        <a href="#serch">Tra Cứu Thời Tiết</a>
-      </li>
-      <li class="menu-item">
-        <a href="#serch">Tra Cứu Thời Tiết</a>
-      </li>
+      <li class="menu-item"><a href="#home">Home</a></li>
+      <li class="menu-item"><a href="#search">Tra Cứu Thời Tiết</a></li>
+      <li class="menu-item"><a href="#weather-forecast">Dự Báo Thời Tiết</a></li>
+      <!-- <li class="menu-item"><a href="#serch">Tra Cứu Thời Tiết</a></li>
+      <li class="menu-item"><a href="#serch">Tra Cứu Thời Tiết</a></li> -->
     </ul>
   </div>
 
-  <div class="container">
+  <h1>Thời TIết Tại Một Số Nơi</h1>
+  <div id="home" class="container">
     <div class="column">
       <h1>Thời tiết tại Hà Nội</h1>
       <div id="weather-info-hanoi"></div>
@@ -54,7 +45,7 @@
   </div>
 
   <div id="search" class="search-waether">
-    <h1>Search Information</h1>
+    <h1>Thông Tin Thời Tiết Đầy Đủ</h1>
     <div class="search-container">
       <input type="text" id="cityInput" placeholder="Name City" autocomplete="off">
       <input type="button" id="search-city" value="Search">
@@ -66,10 +57,31 @@
     </div>
   </div>
 
-  <div class="rain-rate-container">
+  <div id="weather-forecast" class="weather-forecast-container">
     <h1>Dự Báo Thời Tiết</h1>
-    
-  </div>
+    <div class="option-weather">
+      <select name="" id="weather-forecast-option">
+        <option value="hourly">Dự Báo Hàng Giờ</option>
+        <option value="daily">Dự Báo Hàng Ngày</option>
+      </select>
+    </div>
+
+    <div class="container-forecast-hourly">
+      <div class="weather-forecast-content" id="display-hourly-forecast-1"></div>
+      <div class="weather-forecast-content" id="display-hourly-forecast-2"></div>
+      <div class="weather-forecast-content" id="display-hourly-forecast-3"></div>
+      <div class="weather-forecast-content" id="display-hourly-forecast-4"></div>
+    </div>
+
+    <div class="container-forecast-daily">
+      <div class="weather-forecast-content" id="display-daily-forecast-1"></div>
+      <div class="weather-forecast-content" id="display-daily-forecast-2"></div>
+      <div class="weather-forecast-content" id="display-daily-forecast-3"></div>
+      <div class="weather-forecast-content" id="display-daily-forecast-4"></div>
+    </div>
+</div>
+
+
 
   <script src="./get_info_fromAPI.js"></script>
 </body>

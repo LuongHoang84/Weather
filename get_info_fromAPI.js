@@ -163,4 +163,111 @@ document.getElementById("search-city").addEventListener("click", async function(
 });
 
 
-  
+async function forecastWeather() {
+    const ID = '1581130';
+    const optionForecast = document.getElementById("weather-forecast-option").value;
+    const hourlyForecastDiv = []; // Mảng lưu các phần hiển thị dự báo theo giờ
+    const dailyForecastDiv = [];
+
+    // Lấy ra các phần hiển thị của dự báo theo giờ
+    for (let i = 1; i <= 4; i++) {
+        hourlyForecastDiv[i] = document.getElementById(`display-hourly-forecast-${i}`);
+    }
+
+    try {
+        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${ID}&appid=${API_KEY}`);
+        const data = await response.json();
+
+        if (optionForecast === "hourly") { // Nếu lựa chọn là dự báo theo giờ
+            if (data) {
+                // Xóa nội dung trước đó
+                for (let i = 1; i <= 4; i++) {
+                    hourlyForecastDiv[i].innerHTML = '';
+                }
+
+                // Lấy ngày hôm nay
+                const today = new Date().toISOString().slice(0, 10);
+
+                // Xử lý dữ liệu cho dự báo theo giờ
+                data.list.forEach(function (item) {
+                    const dateTime = item.dt_txt;
+                    const date = dateTime.split(' ')[0];
+
+                    // Kiểm tra nếu là ngày hôm nay
+                    if (date === today) {
+                        const hour = new Date(dateTime).getHours();
+                        // Kiểm tra giờ có phải là 6am, 9am, 3pm, hoặc 9pm không
+                        if (hour === 6 || hour === 9 || hour === 15 || hour === 21) {
+                            const temperature = item.main.temp;
+                            const feelsLike = item.main.feels_like;
+                            weatherDescription = item.weather[0].description;
+                            const mota = translateText(weatherDescription);
+                            // Tạo nội dung HTML cho dự báo theo giờ
+                            const hourlyForecastHTML = `
+                                <div class="hourly-forecast-item">
+                                    <p class="datetime">Thời Gian: ${dateTime}</p>
+                                    <p class="temperature">Nhiệt Độ: ${temperature} °C</p>
+                                    <p class="feelsLike">Cảm Giác: ${feelsLike} °C</p>
+                                    <p class="weatherDescription">Mô Tả: ${weatherDescription}</p>
+                                </div>
+                            `;
+
+                            // Thêm nội dung dự báo theo giờ vào phần hiển thị tương ứng
+                            if (hour === 6) {
+                                hourlyForecastDiv[1].innerHTML += hourlyForecastHTML;
+                            } else if (hour === 9) {
+                                hourlyForecastDiv[2].innerHTML += hourlyForecastHTML;
+                            } else if (hour === 15) {
+                                hourlyForecastDiv[3].innerHTML += hourlyForecastHTML;
+                            } else if (hour === 21) {
+                                hourlyForecastDiv[4].innerHTML += hourlyForecastHTML;
+                            }
+                        }
+                    }
+                });
+            }
+            // Xóa nội dung dự báo theo ngày
+            dailyForecastDiv.innerHTML = '';
+        } else if (optionForecast === "daily") {
+            // Xóa nội dung dự báo theo giờ
+            for (let i = 1; i <= 4; i++) {
+              dailyForecastDiv[i] = document.getElementById(`daily-forecast-${i}`).innerHTML = '';
+            }
+          
+            if (data) {
+              // Xử lý dữ liệu cho dự báo theo ngày
+              // Lấy thông tin dự báo cho 4 ngày kế tiếp
+              for (let i = 0; i < 4; i++) {
+                const date = data.list[i * 8].dt_txt.split(' ')[0]; // Lấy ngày cho mỗi ngày
+                const temperature = data.list[i * 8].main.temp;
+                const feelsLike = data.list[i * 8].main.feels_like;
+                const weatherDescription = data.list[i * 8].weather[0].description;
+          
+                // Tạo nội dung HTML cho dự báo theo ngày
+                const dailyForecastHTML = `
+                  <div class="daily-forecast-item">
+                    <p class="date">Ngày: ${date}</p>
+                    <p class="temperature">Nhiệt Độ: ${temperature} °C</p>
+                    <p class="feelsLike">Cảm Giác: ${feelsLike} °C</p>
+                    <p class="weatherDescription">Mô Tả: ${weatherDescription}</p>
+                  </div>
+                `;
+          
+                // Thêm nội dung dự báo theo ngày vào phần hiển thị
+                dailyForecastDiv[i] = document.getElementById(`daily-forecast-${i + 1}`);
+                dailyForecastDiv[i].innerHTML += dailyForecastHTML;
+              }
+            }
+          }
+    } catch (error) {
+        console.error('Lỗi trong quá trình lấy thông tin từ máy chủ.', error);
+    }
+}
+
+// Gọi hàm forecastWeather() khi trang được tải
+window.onload = forecastWeather;
+
+// Gọi hàm forecastWeather() khi lựa chọn thay đổi
+document.getElementById("weather-forecast-option").addEventListener("change", function() {
+    forecastWeather();
+});
