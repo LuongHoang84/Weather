@@ -1,0 +1,48 @@
+"coord": Đối tượng chứa thông tin về tọa độ địa lý của thành phố.
+"lon": Kinh độ (longitude) của thành phố.
+"lat": Vĩ độ (latitude) của thành phố.
+
+"weather": Mảng chứa thông tin về thời tiết hiện tại của thành phố.
+"id": Mã số đại diện cho trạng thái thời tiết. Mã số này có thể được sử dụng để xác định trạng thái thời tiết cụ thể.
+"main": Trạng thái thời tiết chính.
+"description": Mô tả chi tiết về trạng thái thời tiết.
+"icon": Ký tự viết tắt biểu thị biểu tượng thời tiết. Đây là một chuỗi ký tự dùng để hiển thị biểu tượng thời tiết tương ứng.
+
+"base": Loại nguồn dữ liệu sử dụng để lấy thông tin thời tiết (trong trường hợp này là các trạm quan trắc).
+
+"main": Đối tượng chứa thông tin thời tiết chính.
+"temp": Nhiệt độ hiện tại của thành phố (đơn vị đo là Kelvin).
+"feels_like": Nhiệt độ cảm nhận được (đơn vị đo là Kelvin).
+"temp_min": Nhiệt độ tối thiểu trong khoảng thời gian hiện tại (đơn vị đo là Kelvin).
+"temp_max": Nhiệt độ tối đa trong khoảng thời gian hiện tại (đơn vị đo là Kelvin).
+"pressure": Áp suất không khí (đơn vị đo là hPa).
+"humidity": Độ ẩm không khí (đơn vị đo là phần trăm).
+"sea_level": Áp suất không khí tại mực nước biển (đơn vị đo là hPa).
+"grnd_level": Áp suất không khí tại mặt đất (đơn vị đo là hPa).
+
+"visibility": Tầm nhìn (đơn vị đo là mét).
+
+"wind": Đối tượng chứa thông tin về gió.
+"speed": Tốc độ gió (đơn vị đo là mét/giây).
+"deg": Hướng gió (đơn vị đo là độ).
+"gust": Tốc độ gió giật (đơn vị đo là mét/giây).
+
+"clouds": Đối tượng chứa thông tin về mây.
+"all": Tỷ lệ mây che phủ (đơn vị đo là phần trăm).
+
+"dt": Thời gian tính bằng giây kể từ 1/1/1970 (Epoch time) cho thời điểm hiện tại.
+
+"sys": Đối tượng chứa thông tin về hệ thống.
+"type": Loại hệ thống.
+"id": ID hệ thống.
+"country": Quốc gia.
+"sunrise": Thời gian mặt trời mọc tính bằng giây kể từ 1/1/1970 (Epoch time).
+"sunset": Thời gian mặt trời lặn tính bằng giây kể từ 1/1/1970 (Epoch time).
+
+"timezone": Múi giờ của thành phố tính bằng giây.
+
+-"id": ID duy nhất của thành phố trong hệ thống OpenWeatherMap.
+
+"name": Tên thành phố.
+
+"cod": Mã phản hồi của API. Mã 200 đại diện cho thành công.
