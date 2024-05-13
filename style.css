@@ -175,7 +175,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    /* height: 800px; */
 }
 
 #weather-info-search{
@@ -193,6 +193,12 @@ h1 {
 }
 
 /* WEATHER FORECAST  */
+.weather-forecast-container{
+    /* display: block; */
+    height: 500px;
+}
+
+
 .option-weather{
     text-align: right;
 }
@@ -201,6 +207,8 @@ h1 {
     margin-right: 20px;
     height: 30px;
     border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
 }
 
 #weather-forecast-option:focus{
@@ -218,13 +226,23 @@ h1 {
     
 }
 
-.hourly-forecast-item {
+.hourly-forecast-item,
+.daily-forecast-item {
     flex: 1;
-    padding: 10px;
+    padding: 10px 20px;
     /* border: 1px solid red; */
     color: #fff;
     margin-bottom: 20px;
     background-color: rgba(12, 149, 233, 0.7);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer{
+    display: block;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 200px;
+    background-color: rgb(168, 146, 146);
 }
